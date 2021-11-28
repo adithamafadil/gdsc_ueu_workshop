@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gdsc_ueu_workshop/model/makeup/makeup_model.dart';
 import 'package:gdsc_ueu_workshop/widget/size_container_widget.dart';
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({Key? key}) : super(key: key);
+  final MakeupModel makeupModel;
+  const DetailScreen({Key? key, required this.makeupModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class DetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(
-              'https://cf.shopee.co.id/file/845f1ddb79ffd40de044ab7d815d870a',
+              makeupModel.imageLink,
               height: 320,
               fit: BoxFit.cover,
             ),
@@ -45,17 +47,17 @@ class DetailScreen extends StatelessWidget {
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
-                        'Nama Produk',
-                        style: TextStyle(
+                        makeupModel.name,
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),
                       ),
                       Text(
-                        'Rp50,000',
-                        style: TextStyle(
+                        '${makeupModel.priceSign} ${makeupModel.price}',
+                        style: const TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 20,
                         ),
@@ -72,10 +74,10 @@ class DetailScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
-                children: const [
-                  Text('50 Terjual'),
-                  SizedBox(width: 8),
-                  Text('⭐⭐⭐⭐⭐ 5'),
+                children: [
+                  const Text('50 Terjual'),
+                  const SizedBox(width: 8),
+                  Text('⭐⭐⭐⭐⭐ ${makeupModel.rating ?? 0}'),
                 ],
               ),
             ),
@@ -104,13 +106,33 @@ class DetailScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text('Available Color'),
-                  Row(
-                    children: const [
-                      CircleAvatar(backgroundColor: Colors.green),
-                      SizedBox(width: 8),
-                      CircleAvatar(backgroundColor: Colors.yellow)
-                    ],
-                  )
+                  SizedBox(
+                    height: 80,
+                    child: ListView.builder(
+                      itemCount: makeupModel.productColors.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        if (makeupModel.productColors.isEmpty) {
+                          return const SizedBox.shrink();
+                        } else {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                const CircleAvatar(
+                                    backgroundColor: Colors.green),
+                                Text(
+                                  makeupModel.productColors[index].colourName ??
+                                      'None',
+                                  style: const TextStyle(fontSize: 8),
+                                )
+                              ],
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -122,19 +144,9 @@ class DetailScreen extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'Lorem Ipsum is simply dummy text of the printing and typesetting '
-                'industry. Lorem Ipsum has been the industry\'s standard dummy text'
-                ' ever since the 1500s, when an unknown printer took a galley of '
-                'type and scrambled it to make a type specimen book. It has '
-                'survived not only five centuries, but also the leap into electronic '
-                'typesetting, remaining essentially unchanged. It was popularised '
-                'in the 1960s with the release of Letraset sheets containing Lorem '
-                'Ipsum passages, and more recently with desktop publishing software '
-                'like Aldus PageMaker including versions of Lorem Ipsum.',
-              ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(makeupModel.description),
             ),
           ],
         ),
