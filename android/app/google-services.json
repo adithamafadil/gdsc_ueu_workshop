@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "708550584080",
+    "project_id": "makeup-flutter",
+    "storage_bucket": "makeup-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708550584080:android:07c9a7aee0166f5f142795",
+        "android_client_info": {
+          "package_name": "com.example.gdsc_ueu_workshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "708550584080-if5aci140u5c62r4j0186el7tr3go3hb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gdsc_ueu_workshop",
+            "certificate_hash": "8dbc929c984526d597c750c41f8d4417f250f49b"
+          }
+        },
+        {
+          "client_id": "708550584080-e8f95ivejggqp9j2tm0th15mtjr7gapt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_4cqLCfZY5VwhucSqs21PNhy1R9CLYNA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "708550584080-e8f95ivejggqp9j2tm0th15mtjr7gapt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
